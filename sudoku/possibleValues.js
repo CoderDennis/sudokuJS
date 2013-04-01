@@ -2,35 +2,39 @@ sudoku.PossibleValues = function () {
 
     var self = this;
 
-    this._values = sudoku.AllNonEmptyValues();
-    this.manuallyRemoved = [];     // need to make manuallyRemoved a "private" member as shown in knockout js video
+    var values = sudoku.AllNonEmptyValues();
+    var manuallyRemoved = [];
 
     this.values = function() {
-        return self._values;
+        return values;
     };
 
     this.add = function (value) {
         if (_.contains(sudoku.AllNonEmptyValues(), value)) {
-            if (!_.contains(self.values, value) && !_.contains(self.manuallyRemoved, value)) {
-                self._values.push(value);
-                self._values.sort();
+            if (!_.contains(values, value) && !_.contains(manuallyRemoved, value)) {
+                values.push(value);
+                values.sort();
             }
         }
     };
 
     this.remove = function(value) {
-        self._values = _.without(self._values, value);
+        values = _.without(values, value);
     };
 
     this.manuallyRemove = function(value) {
         self.remove(value);
-        if (!_.contains(self.manuallyRemoved, value))
-            self.manuallyRemoved.push(value);
+        if (!_.contains(manuallyRemoved, value))
+            manuallyRemoved.push(value);
     };
 
     this.manuallyAdd = function(value) {
-        self.manuallyRemoved = _.without(self.manuallyRemoved, value);
+        manuallyRemoved = _.without(manuallyRemoved, value);
         self.add(value);
+    };
+
+    this.fromArray = function(newValues) {
+        values = _.difference(newValues, manuallyRemoved);
     };
 
 };
