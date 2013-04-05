@@ -37,4 +37,8 @@ sudoku.PossibleValues = function () {
         values = _.difference(newValues, manuallyRemoved);
     };
 
+    this.manualReset = function() {
+        manuallyRemoved = [];
+    };
+
 };
