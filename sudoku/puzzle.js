@@ -99,6 +99,26 @@
             return _.first(_.rest(colOrder, r * 9), 9);
         });
 
+        var blockRows = _.map(_.range(27), function(br) {
+            return _.first(_.rest(squares, br * 3), 3);
+        });
+
+        var blockOrder = _.chain(_.range(3))
+            .map(function(r) {
+                return _.select(blockRows, function(br) {
+                    if (_.indexOf(blockRows, br) % 3 == r) {
+                        return blockRows;
+                    }
+                    return undefined;
+                });
+            })
+            .flatten()
+            .value();
+
+        blks = _.map(_.range(9), function (r) {
+            return _.first(_.rest(blockOrder, r * 9), 9);
+        });
+
     };
 
     init();

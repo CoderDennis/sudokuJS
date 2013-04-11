@@ -24,7 +24,9 @@ var getVerticalPuzzle = function() {
 
 var displayString = function(list) {
     var result = "";
-    _.each(list, function(squares) {
+    equal(list.length, 9);
+    _.each(list, function (squares) {
+        equal(list.length, 9);
         _.each(squares, function(sq) {
             result += sq.value();
         });
@@ -64,4 +66,14 @@ asyncTest("Cols_HorizontalPuzzle_ReturnsCollectionOfColumns", function() {
 asyncTest("Cols_VerticlePuzzle_ReturnsCollectionOfCols", function() {
     var testPuzzle = getVerticalPuzzle();
     approve(displayString(testPuzzle.cols()), "PuzzleTest.Cols_VerticlePuzzle_ReturnsCollectionOfCols.approved.txt");
+});
+
+asyncTest("Blocks_HorizontalPuzzle_ReturnsCollectionOfBlocks", function() {
+    var testPuzzle = getHorizontalPuzzle();
+    approve(displayString(testPuzzle.blocks()), "PuzzleTest.Blocks_HorizontalPuzzle_ReturnsCollectionOfBlocks.approved.txt");
+});
+
+asyncTest("Blocks_VerticlePuzzle_ReturnsCollectionOfBlocks", function() {
+    var testPuzzle = getVerticalPuzzle();
+    approve(displayString(testPuzzle.blocks()), "PuzzleTest.Blocks_VerticlePuzzle_ReturnsCollectionOfBlocks.approved.txt");
 });
