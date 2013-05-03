@@ -2,7 +2,7 @@ sudoku.PossibleValues = function () {
 
     var self = this;
 
-    var values = sudoku.AllNonEmptyValues();
+    var values = sudoku.allNonEmptyValues();
     var manuallyRemoved = [];
 
     this.values = function() {
@@ -10,7 +10,7 @@ sudoku.PossibleValues = function () {
     };
 
     this.add = function (value) {
-        if (_.contains(sudoku.AllNonEmptyValues(), value)) {
+        if (_.contains(sudoku.allNonEmptyValues(), value)) {
             if (!_.contains(values, value) && !_.contains(manuallyRemoved, value)) {
                 values.push(value);
                 values.sort();

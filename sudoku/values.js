@@ -11,7 +11,7 @@ sudoku.values = {
     nine : 9
 };
 
-sudoku.AllNonEmptyValues = function() {
+sudoku.allNonEmptyValues = function() {
     return _.chain(sudoku.values)
         .values()
         .tail()
